@@ -1,7 +1,7 @@
 const configKeyCloak = {
-  realm: 'myrealm',
-  url: 'http://127.0.0.1:8080/',
-  clientId: 'myclient'
+  realm: process.env.REACT_APP_REALM_NAME,
+  url: process.env.REACT_APP_KEY_CLOAK_URL,
+  clientId: process.env.REACT_APP_KEY_CLIENT_ID
 };
 
 export default configKeyCloak;
