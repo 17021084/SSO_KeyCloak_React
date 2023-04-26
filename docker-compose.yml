@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      # - DB_VENDOR=h2
+      # - DB_ADDR=localhost
+      # - DB_PORT=5432
+      # - DB_USER=keycloak
+      # - DB_PASSWORD=keycloak
+      # - DB_DATABASE=keycloak
+      # - PROXY_ADDRESS_FORWARDING=true
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+    volumes:
+      - ./keycloak/data:/opt/jboss/keycloak/standalone/data
+      - ./keycloak/themes:/opt/jboss/keycloak/themes
+      - ./keycloak/imports:/opt/jboss/keycloak/standalone/import
+    command: start-dev
