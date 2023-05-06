@@ -21,19 +21,16 @@ services:
       - ./keycloak/themes:/opt/jboss/keycloak/themes
       - ./keycloak/imports:/opt/jboss/keycloak/standalone/import
     command: start-dev
-    
+
   react-app:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - 3000:80
-   
-  # nginx:
-  #   image: nginx:latest
+
+  # web-server:
+  #   build:
+  #     context: ./web-server  
   #   ports:
-  #     - 80:80
-  #   volumes:
-  #     - ./nginx.conf:/etc/nginx/conf.d/default.conf
-  #   depends_on:
-  #     - react-app
+  #     - 5555:5555
