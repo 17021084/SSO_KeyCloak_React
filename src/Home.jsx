@@ -3,6 +3,7 @@ import axios from "axios";
 import configKeyCloak from "./configKeyCloak.js";
 import Keycloak from "keycloak-js";
 import KeyCloakServices from "./KeyCloakServices.js";
+const SERVER_PORT = 5555;
 
 function Protected() {
   // const logoutFn = async () => {
@@ -16,6 +17,25 @@ function Protected() {
   //   }
   // };
   const [token, setToken] = useState();
+  const [data, setData] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const token = await KeyCloakServices.getToken();
+      const response = await axios.get(
+        `http://localhost:${SERVER_PORT}/protected`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response.data);
+      setData(response.data);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
 
   return (
     <div>
@@ -40,6 +60,13 @@ function Protected() {
       </button>
       <div>token here:</div>
       <div>{token}</div>
+      <div>===================</div>
+
+      <button onClick={fetchData}>fetch data</button>
+      <div>Fake data</div>
+      {data.map((dt, i) => (
+        <div key={i}>{dt}</div>
+      ))}
     </div>
   );
 }
