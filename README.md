@@ -20,3 +20,39 @@ Access admin
 http://0.0.0.0:8080 
 <br/>
 http://localhost:8080 
+
+===
+### start
+
+#### FE and keycloak
+docker-compose up
+
+
+
+<br/>
+### Login nais admin
+<br/>
+
+```
+user: admin
+pw: admin
+```
+
+<br/>
+create realm and client
+<br/>
+realm : myrealm
+<br/>
+client :myclient
+
+
+=> get api key
+
+
+
+![key img](./key.png)
+#### BE
+cd web-server 
+setting pulic key env
+
+node server.js
