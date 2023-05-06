@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   keycloak:
@@ -21,3 +21,16 @@ services:
       - ./keycloak/themes:/opt/jboss/keycloak/themes
       - ./keycloak/imports:/opt/jboss/keycloak/standalone/import
     command: start-dev
+
+  react-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:80
+
+  # web-server:
+  #   build:
+  #     context: ./web-server  
+  #   ports:
+  #     - 5555:5555
